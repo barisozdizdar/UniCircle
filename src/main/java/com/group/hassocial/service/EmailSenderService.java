@@ -19,12 +19,12 @@ public class EmailSenderService implements IEmailSender {
     @Value("${spring.mail.username}")
     private String from;
 
-    private final EmailConfig emailConfig;
+    //private final EmailConfig emailConfig;
     private final static Logger logger = LoggerFactory.getLogger(IEmailSender.class);
     private final JavaMailSender javaMailSender;
 
-    public EmailSenderService(JavaMailSender javaMailSender, EmailConfig emailConfig) {
-        this.emailConfig = emailConfig;
+    public EmailSenderService(JavaMailSender javaMailSender) {
+        //this.emailConfig = emailConfig;
         this.javaMailSender = javaMailSender;
     }
 
@@ -46,13 +46,13 @@ public class EmailSenderService implements IEmailSender {
     }
 
     public String buildEmail(String name, String link) {
-        return "<div style=\"font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c\">\n" +
+        return "<div style=\"font-family:Cereal,Helvetica,sans-serif;;font-size:15px;margin:0;color:#0b0c0c\">\n" +
                 "\n" +
                 "<span style=\"display:none;font-size:1px;color:#fff;max-height:0\"></span>\n" +
                 "\n" +
                 "  <table role=\"presentation\" width=\"100%\" style=\"border-collapse:collapse;min-width:100%;width:100%!important\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +
                 "    <tbody><tr>\n" +
-                "      <td width=\"100%\" height=\"53\" bgcolor=\"#0b0c0c\">\n" +
+                "      <td style=\"border-radius: 10px;\"width=\"100%\" height=\"53\" bgcolor=\"#0b0c0c\">\n" +
                 "        \n" +
                 "        <table role=\"presentation\" width=\"100%\" style=\"border-collapse:collapse;max-width:580px\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" align=\"center\">\n" +
                 "          <tbody><tr>\n" +
@@ -82,7 +82,7 @@ public class EmailSenderService implements IEmailSender {
                 "        \n" +
                 "                <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse\">\n" +
                 "                  <tbody><tr>\n" +
-                "                    <td bgcolor=\"#1D70B8\" width=\"100%\" height=\"10\"></td>\n" +
+                "                    <td style=\"border-radius: 10px;\" bgcolor=\"#82D8A2\" width=\"100%\" height=\"10\"></td>\n" +
                 "                  </tr>\n" +
                 "                </tbody></table>\n" +
                 "        \n" +
@@ -101,7 +101,7 @@ public class EmailSenderService implements IEmailSender {
                 "      <td width=\"10\" valign=\"middle\"><br></td>\n" +
                 "      <td style=\"font-family:Helvetica,Arial,sans-serif;font-size:19px;line-height:1.315789474;max-width:560px\">\n" +
                 "        \n" +
-                "            <p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\">Hi " + name + ",</p><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> Thank you for registering. Please click on the below link to activate your account: </p><blockquote style=\"Margin:0 0 20px 0;border-left:10px solid #b1b4b6;padding:15px 0 0.1px 15px;font-size:19px;line-height:25px\"><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> <a href=\"" + link + "\">Activate Now</a> </p></blockquote>\n Link will expire in 15 minutes. <p>See you soon</p>" +
+                "            <p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\">Hi " + name + ",</p><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> Thank you for registering. Please click on the below link to activate your account: </p><blockquote style = \"Margin:0 0 20px 0;border-left:10px solid #b1b4b6;padding:15px 0 0.1px 15px;border: 1px solid #F56969 ;border-radius: 10px;background-color: #F56969;width: 122px;height: 38px;\"class=\"boxed\"><div style=\"align-items: center;font-size: 16px;font-weight: bold;\"><a style=\"margin-top:6px;font-size:16px;font-weight:bold;color:aliceblue;text-decoration: none;\n\" href=\"" + link + "\">Activate Now</a></div></blockquote>\n Link will expire in 15 minutes. <p>See you soon</p>" +
                 "        \n" +
                 "      </td>\n" +
                 "      <td width=\"10\" valign=\"middle\"><br></td>\n" +
@@ -111,6 +111,13 @@ public class EmailSenderService implements IEmailSender {
                 "    </tr>\n" +
                 "  </tbody></table><div class=\"yj6qo\"></div><div class=\"adL\">\n" +
                 "\n" +
+                "<div>\n" +
+                "   <table width=\"100%\" height=\"100%\" align=\"center\" valign=\"center\">\n" +
+                "   <tr><td>\n" +
+                "      <img style=\"width:100px;height:21px\" src=\"https://s3-alpha-sig.figma.com/img/332d/ca9f/a8a27b401dbde82d81402e0025d08084?Expires=1655683200&Signature=DMAlgRLaoK0LT0vn-HXxFeLQziHViEkfH5hz0cV3kktFIRt5O4ub~PPeAYexWmrTdlv-jn~L1mqriY1-uTOzi7~fR3NYMhFu6SuKdJjLzk~UkTJ6UBY9DPseJKSXe9b5qoNBQr22-h1~h5HrxqCH1x5hwJq4BQ6M3hsnpZ902Uf6q8cnwZ-lE6J-s-9mZ8S6DhbEDOO4LEFHBPCkYZg4c--1ONsASOJidTjVS8GPnDn5PPlf88-ub1sDnxFKJkf8t7uporbMAKbYjd1iDq5ewOotF6LSsKsNHklLw0qNPSQKDRegDGhoDIfMs3Z8tMLqyBlJfHMrSh8YYl58g1OcWw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA\" alt=\"foo\" />\n" +
+                "   </td></tr>\n" +
+                "   </table>\n" +
+                "</div>" +
                 "</div></div>";
     }
 
