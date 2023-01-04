@@ -40,7 +40,7 @@ public interface UserRepository extends JpaRepository<User, Integer>{
     @Transactional
     @Modifying
     @Query(value = "UPDATE USERS SET FullName = ?1, BirthDate = ?2, Gender = ?3, Orientation = ?4, Description = ?5 WHERE UserID = ?6", nativeQuery = true)
-    void updateUser(String fullName, Date birthDate, Boolean gender, Integer orientation, String desciption, Integer id);
+    void updateUser(String fullName, Date birthDate, Boolean gender, Integer orientation, String description, Integer id);
 
     @Transactional
     @Modifying

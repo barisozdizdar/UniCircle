@@ -38,4 +38,6 @@ public class UserDto implements Serializable {
     private DateTime createDate;
 
     private boolean Gender;
+
+    private boolean loggedIn;
 }

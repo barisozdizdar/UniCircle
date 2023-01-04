@@ -91,7 +91,7 @@ public class RegistrationService implements IRegistrationService {
     public void makeUserVerified(String email) {
         Optional<User> userRepositoryByEmail = userRepository.findByEmail(email);
         userRepositoryByEmail.ifPresent(user -> user.setIsVerified(true));
-        //userRepository.verifyUser(email);
+        userRepository.verifyUser(email);
     }
 
     @Transactional

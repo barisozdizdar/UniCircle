@@ -59,6 +59,9 @@ public class User {
     @Column
     private int Orientation;
 
+    @Column
+    private boolean LoggedIn;
+
     public static java.sql.Date datePatternOrganizer(String anyDate) throws ParseException {
         Date date = new SimpleDateFormat(DATE_PATTERN).parse(anyDate);
         return new java.sql.Date(date.getTime());

@@ -6,6 +6,7 @@ import com.group.hassocial.repository.UserRepository;
 import com.group.hassocial.service.interfaces.ISignUpService;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.text.ParseException;
 import java.util.Optional;
 
@@ -22,11 +23,12 @@ public class SignUpService implements ISignUpService {
 
     @Override
     public String signUp(UserDto userDto) throws ParseException {
-        Optional<User> authenticatedUser = userRepository.findByEmail(userRepository.findAuthenticatedUserEmailByToken());
+        //Optional<User> authenticatedUser = userRepository.findByEmail(userRepository.findAuthenticatedUserEmailByToken());
+        Optional<User> authenticatedUser = userRepository.findByEmail(userDto.getEmail());
         if (authenticatedUser.isPresent()) {
             authenticatedUser.get().setFullName(userDto.getFullName());
             authenticatedUser.get().setGender(userDto.isGender());
-            authenticatedUser.get().setBirthDate(datePatternOrganizer(userDto.getBirthDate().toString()));
+            authenticatedUser.get().setBirthDate(datePatternOrganizer(userDto.getBirthDate()));
             authenticatedUser.get().setAvatarImageID(1);
             userRepository.save(authenticatedUser.get());
         }
